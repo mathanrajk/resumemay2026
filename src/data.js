@@ -6,10 +6,10 @@ export const profile = {
   email: 'kmathan301@gmail.com',
   linkedin: 'https://linkedin.com/in/mathanrajkanagaraj-7891011b4',
   github: 'https://github.com/', // placeholder or user can customize
-  bio: 'Former Software Engineer Level 3 at Syncfusion with nearly 4 years of experience building enterprise-grade React UI components, full-stack MERN applications, and cross-platform mobile apps. Passionate about performant UI architecture, clean TypeScript code, and scalable state management.',
+  bio: 'Former Software Engineer Level 3 at Syncfusion with 3 years and 11 months of experience building enterprise-grade React UI components, full-stack MERN applications, and cross-platform mobile apps. Passionate about performant UI architecture, clean TypeScript code, and scalable state management.',
   stats: [
-    { label: 'Experience', value: '~4 Years' },
-    { label: 'Former Role', value: 'L3 @ Syncfusion' },
+    { label: 'Experience', value: '3 Years and 11 Months' },
+    { label: 'Former Role', value: 'Level 3 @ Syncfusion' },
     { label: 'Promotions', value: '4 Levels' },
     { label: 'Certifications', value: '8 Completed' },
   ],
@@ -50,7 +50,7 @@ export const aboutHighlights = [
 export const experience = [
   {
     title: 'Software Engineer Level 3',
-    when: 'Feb 2025 – Nov 2025',
+    when: 'Feb 2025 – Jan 2026',
     current: false,
     company: 'Syncfusion Software, Chennai',
     text: 'Developed and maintained Syncfusion React UI components as part of a dedicated React product team. Shipped new component features, resolved product issues, and reviewed code for React and TypeScript best practices.',

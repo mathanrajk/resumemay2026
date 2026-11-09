@@ -455,7 +455,7 @@ export default function App() {
             <span className="section-kicker">CAREER PATH</span>
             <h2>Work Experience</h2>
             <p className="section-sub">
-              Consistent growth and progression at Syncfusion Software over nearly 4 years.
+              Consistent growth and progression at Syncfusion Software over 3 years and 11 months.
             </p>
           </div>
 

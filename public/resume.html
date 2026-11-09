@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mathanraj Kanagaraj - Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #2563eb;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-light: #64748b;
+      --border-color: #cbd5e1;
+      --bg-header: #0f172a;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--text-main);
+      background-color: #f1f5f9;
+      line-height: 1.45;
+      font-size: 13px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--primary-light);
+      color: #ffffff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background-color: #f8fafc;
+      color: var(--text-main);
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background-color: #e2e8f0;
+    }
+
+    .page-container {
+      max-width: 860px;
+      margin: 28px auto 60px auto;
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .resume-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 28px 36px 24px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .name {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .headline {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #93c5fd;
+      margin-bottom: 8px;
+      letter-spacing: 0.2px;
+    }
+
+    .sub-meta {
+      font-size: 12.5px;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #e2e8f0;
+      white-space: nowrap;
+    }
+
+    .header-right a {
+      color: #93c5fd;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .header-right a:hover {
+      color: #bfdbfe;
+      text-decoration: underline;
+    }
+
+    .header-right .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    /* BODY */
+    .resume-body {
+      padding: 24px 36px 32px 36px;
+    }
+
+    .section {
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 1.5px solid #1e3a8a;
+      padding-bottom: 3px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .summary-text {
+      color: var(--text-muted);
+      font-size: 12.8px;
+      line-height: 1.55;
+      text-align: justify;
+    }
+
+    .summary-text strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* EXPERIENCE */
+    .exp-item {
+      margin-bottom: 14px;
+      page-break-inside: avoid;
+    }
+
+    .exp-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .role-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .role-company {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-light);
+    }
+
+    .role-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .role-loc {
+      font-size: 11.5px;
+      color: var(--text-light);
+      margin-bottom: 5px;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 4px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 15px;
+      margin-bottom: 4px;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    ul.bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      color: var(--primary-light);
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    ul.bullet-list li strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* SKILLS TABLE */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 6px 14px;
+      font-size: 12.5px;
+    }
+
+    .skill-cat {
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+    }
+
+    .skill-list {
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* PROJECTS */
+    .project-item {
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+    }
+
+    .project-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .project-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .project-links a {
+      font-size: 11.5px;
+      color: var(--primary-light);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+
+    .project-tech {
+      font-size: 11.5px;
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* EDUCATION & CERTIFICATIONS */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+      font-size: 12.5px;
+    }
+
+    .edu-item strong {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .edu-inst {
+      color: var(--text-muted);
+    }
+
+    .edu-score {
+      font-weight: 600;
+      color: var(--primary-light);
+    }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 16px;
+      font-size: 12px;
+    }
+
+    .cert-entry {
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .cert-entry strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .cert-badge {
+      color: var(--text-light);
+      font-size: 11px;
+    }
+
+    /* PRINT OPTIMIZATION */
+    @media print {
+      body {
+        background-color: #ffffff;
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .toolbar {
+        display: none !important;
+      }
+
+      .page-container {
+        margin: 0;
+        box-shadow: none;
+        max-width: 100%;
+        border-radius: 0;
+      }
+
+      .resume-header {
+        background: #0f172a !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 20px 28px 16px 28px;
+      }
+
+      .name {
+        font-size: 22px;
+      }
+
+      .resume-body {
+        padding: 16px 28px 20px 28px;
+      }
+
+      .section {
+        margin-bottom: 14px;
+      }
+
+      .section-title {
+        border-bottom: 1.5px solid #1e3a8a !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit !important;
+      }
+
+      .header-right a {
+        color: #ffffff !important;
+      }
+
+      .project-links a {
+        color: #1e3a8a !important;
+      }
+
+      .exp-item, .project-item {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Toolbar -->
+  <div class="toolbar">
+    <button class="btn" onclick="window.print()">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+        <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+      </svg>
+      Print / Save as PDF
+    </button>
+    <a href="https://mathanrajkanagaraj.vercel.app/" target="_blank" class="btn btn-secondary">
+      View Live Portfolio
+    </a>
+  </div>
+
+  <div class="page-container">
+    <!-- Header -->
+    <header class="resume-header">
+      <div class="header-left">
+        <h1 class="name">Mathanraj Kanagaraj</h1>
+        <div class="headline">Software Engineer &bull; Full Stack Developer (MERN / React / TypeScript)</div>
+        <div class="sub-meta">
+          <span>Tamil Nadu, India</span>
+          <span>&bull;</span>
+          <span>Open to Relocation &amp; Remote</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="contact-item">
+          <span>+91 9655952592</span>
+        </div>
+        <div class="contact-item">
+          <a href="mailto:kmathan301@gmail.com">kmathan301@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <a href="https://linkedin.com/in/mathanrajkanagaraj-7891011b4" target="_blank">linkedin.com/in/mathanrajkanagaraj</a>
+        </div>
+        <div class="contact-item">
+          <a href="https://mathanrajkanagaraj.vercel.app/" target="_blank">mathanrajkanagaraj.vercel.app</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="resume-body">
+      <!-- Professional Summary -->
+      <section class="section">
+        <h2 class="section-title">Professional Summary</h2>
+        <p class="summary-text">
+          Results-driven <strong>Software Engineer &amp; Full Stack Developer</strong> with <strong>4+ years of specialized experience</strong> at <strong>Syncfusion Software</strong> building high-performance React UI components, scalable frontend systems, and full-stack MERN/mobile applications. Progressed rapidly across <strong>4 engineering levels</strong> (Junior &rarr; L1 &rarr; L2 &rarr; L3) through technical ownership, delivering 40+ production component features, cutting bug rates by <strong>~25%</strong> through strict code reviews and TypeScript type safety, and diagnosing 1,000+ complex technical challenges. Proven expertise in <strong>React, TypeScript, Redux Toolkit, TanStack Query, Node.js, Express, MongoDB,</strong> and automated testing with <strong>Jest &amp; React Testing Library</strong>.
+        </p>
+      </section>
+
+      <!-- Technical Skills -->
+      <section class="section">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <div class="skill-cat">Languages</div>
+          <div class="skill-list">TypeScript, JavaScript (ES6+), Python, HTML5, CSS3 / Sass</div>
+
+          <div class="skill-cat">Frontend &amp; UI</div>
+          <div class="skill-list">React.js, Next.js, Redux, Redux Toolkit, TanStack Query (React Query), Context API, Webpack, Vite</div>
+
+          <div class="skill-cat">Backend &amp; Database</div>
+          <div class="skill-list">Node.js, Express.js, RESTful APIs, MERN Architecture, MongoDB, Cloudinary</div>
+
+          <div class="skill-cat">Mobile Development</div>
+          <div class="skill-list">React Native (iOS &amp; Android), Mobile State Management, Native UI Ergonomics</div>
+
+          <div class="skill-cat">Testing &amp; Quality</div>
+          <div class="skill-list">Jest, React Testing Library, Unit &amp; Integration Testing, Component Debugging, Peer Code Reviews</div>
+
+          <div class="skill-cat">Tools &amp; Workflows</div>
+          <div class="skill-list">Git, GitHub, VS Code, CI/CD Pipelines, Agile/Scrum, Vercel, Performance Optimization</div>
+        </div>
+      </section>
+
+      <!-- Professional Experience -->
+      <section class="section">
+        <h2 class="section-title">Professional Experience</h2>
+
+        <!-- Level 3 -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <span class="role-title">Software Engineer Level 3</span>
+              <span class="role-company">&bull; Syncfusion Software</span>
+            </div>
+            <span class="role-date">Feb 2025 &ndash; Present (1 yr 9 mos)</span>
+          </div>
+          <div class="role-loc">Chennai, Tamil Nadu</div>
+          <ul class="bullet-list">
+            <li>Transitioned to the core React product team, architecting, developing, and maintaining enterprise-grade <strong>Syncfusion React UI component libraries</strong> utilized by thousands of global developers.</li>
+            <li>Delivered <strong>10+ new component features</strong> and resolved <strong>30+ product issues</strong> per quarter following Agile sprints with strict test-driven development standards.</li>
+            <li>Conducted comprehensive peer code reviews enforcing strict TypeScript type safety and React performance standards, <strong>reducing regression defect rates by ~25%</strong>.</li>
+            <li>Optimized component rendering performance and virtual DOM reconciliation on complex data grids and charts, <strong>improving rendering speeds by ~20%</strong> for data-heavy views.</li>
+            <li>Collaborated with CI/CD release pipelines to streamline automated test suites (Jest/RTL), semantic versioning, and zero-defect npm package publishing.</li>
+          </ul>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <span class="role-title">Software Engineer Level 2</span>
+              <span class="role-company">&bull; Syncfusion Software</span>
+            </div>
+            <span class="role-date">Jul 2023 &ndash; Feb 2025 (1 yr 8 mos)</span>
+          </div>
+          <div class="role-loc">Chennai, Tamil Nadu</div>
+          <ul class="bullet-list">
+            <li>Spearheaded Tier-2 escalated technical support for global clients, diagnosing and solving <strong>50+ complex technical blockers per month</strong> across React, TypeScript, and JavaScript frameworks.</li>
+            <li>Engineered 20+ production-grade sample projects, proof-of-concepts, and REST API integration demos, accelerating enterprise client adoption and component integration.</li>
+            <li>Triaged, reproduced, and reported <strong>20+ core component bugs per quarter</strong> with minimal reproduction repos, directly improving product reliability in core releases.</li>
+            <li>Maintained an exceptional <strong>95%+ Customer Satisfaction (CSAT) score</strong> by delivering rapid root-cause analyses and robust code workarounds.</li>
+          </ul>
+        </div>
+
+        <!-- Level 1 -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <span class="role-title">Software Engineer Level 1</span>
+              <span class="role-company">&bull; Syncfusion Software</span>
+            </div>
+            <span class="role-date">Nov 2022 &ndash; Jul 2023 (8 mos)</span>
+          </div>
+          <div class="role-loc">Chennai, Tamil Nadu</div>
+          <ul class="bullet-list">
+            <li>Provided dedicated developer support for Syncfusion UI components across React JS, TypeScript, and modern JavaScript.</li>
+            <li>Reproduced and resolved <strong>30+ customer-reported defects per month</strong>, providing tested custom code solutions and patch updates.</li>
+            <li>Authored detailed technical documentation, migration guides, and developer FAQs, <strong>reducing recurring support inquiries by ~15%</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- Junior Developer -->
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <span class="role-title">Junior Software Developer</span>
+              <span class="role-company">&bull; Syncfusion Software</span>
+            </div>
+            <span class="role-date">Mar 2022 &ndash; Nov 2022 (9 mos)</span>
+          </div>
+          <div class="role-loc">Chennai, Tamil Nadu</div>
+          <ul class="bullet-list">
+            <li>Assisted in front-end development, bug fixing, and maintenance for web-based UI component libraries.</li>
+            <li>Developed 2 cross-platform mobile prototypes with React Native during company training, mastering mobile UI patterns and state lifecycles.</li>
+            <li>Applied clean code standards in TypeScript and JavaScript under senior engineering mentorship.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="section">
+        <h2 class="section-title">Key Projects</h2>
+
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title">Tunexa &ndash; Mobile Audio Streaming &amp; Social Podcast Platform</span>
+            <div class="project-links">
+              <a href="https://tunexa-mu.vercel.app/" target="_blank">Live Demo &rarr;</a>
+            </div>
+          </div>
+          <div class="project-tech">React Native &bull; TypeScript &bull; Redux Toolkit &bull; TanStack Query &bull; Node.js &bull; Express &bull; MongoDB &bull; Cloudinary</div>
+          <ul class="bullet-list">
+            <li>Engineered a full-featured cross-platform audio streaming mobile app with custom playlist curation, favorites, listening history, dynamic playing queue, and variable playback speed control (0.5x&ndash;2.0x).</li>
+            <li>Implemented dual-layer state management: Redux Toolkit for synchronous client UI states and TanStack Query for server caching, optimistic mutations, and background synchronization.</li>
+            <li>Built a scalable Node.js/Express REST API backed by MongoDB, integrating Cloudinary for audio storage and CDN streaming.</li>
+            <li>Designed and deployed an interactive promotional landing page hosted on Vercel with modern responsive styling: <a href="https://tunexa-mu.vercel.app/" target="_blank" style="color:var(--primary-light);text-decoration:none;">tunexa-mu.vercel.app</a></li>
+          </ul>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title">Developer Portfolio &amp; Interactive Component Showcase</span>
+            <div class="project-links">
+              <a href="https://mathanrajkanagaraj.vercel.app/" target="_blank">Live Site &rarr;</a>
+            </div>
+          </div>
+          <div class="project-tech">React &bull; Vite &bull; JavaScript &bull; Modern CSS Grid &bull; Responsive Design &bull; Vercel</div>
+          <ul class="bullet-list">
+            <li>Designed and built a fast, accessible developer portfolio showcasing enterprise components, verified credentials, and interactive project features.</li>
+            <li>Implemented dark/light theme switching, lazy-loaded media assets, modal previews, and smooth section navigation, scoring 95+ on Google Lighthouse.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="edu-item">
+          <div>
+            <strong>B.E. &ndash; Computer Science and Engineering</strong> &bull; <span class="edu-inst">SNS College of Technology</span> (2017 &ndash; 2021)
+          </div>
+          <span class="edu-score">CGPA: 8.01 / 10</span>
+        </div>
+        <div class="edu-item">
+          <div>
+            <strong>Higher Secondary (XII)</strong> &bull; <span class="edu-inst">Sowdambikaa Hr. Sec. School</span> (2016 &ndash; 2017)
+          </div>
+          <span class="edu-score">84%</span>
+        </div>
+        <div class="edu-item">
+          <div>
+            <strong>SSLC (X)</strong> &bull; <span class="edu-inst">Sowdambikaa Hr. Sec. School</span> (2014 &ndash; 2015)
+          </div>
+          <span class="edu-score">88%</span>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section class="section">
+        <h2 class="section-title">Certifications</h2>
+        <div class="certs-grid">
+          <div class="cert-entry">
+            &bull; <strong>React Native, Redux &amp; Express &ndash; Full Stack</strong> <span class="cert-badge">(Udemy)</span>
+          </div>
+          <div class="cert-entry">
+            &bull; <strong>Testing React Apps with Jest &amp; RTL</strong> <span class="cert-badge">(LinkedIn Learning)</span>
+          </div>
+          <div class="cert-entry">
+            &bull; <strong>Understanding TypeScript</strong> <span class="cert-badge">(Udemy)</span>
+          </div>
+          <div class="cert-entry">
+            &bull; <strong>AI for React Developers</strong> <span class="cert-badge">(LinkedIn Learning)</span>
+          </div>
+          <div class="cert-entry">
+            &bull; <strong>React &ndash; The Complete Guide (Next.js, Redux)</strong> <span class="cert-badge">(Udemy)</span>
+          </div>
+          <div class="cert-entry">
+            &bull; <strong>CSS &ndash; The Complete Guide (Flexbox, Grid, Sass)</strong> <span class="cert-badge">(Udemy)</span>
+          </div>
+          <div class="cert-entry">
+            &bull; <strong>React Native &ndash; The Practical Guide</strong> <span class="cert-badge">(Udemy)</span>
+          </div>
+          <div class="cert-entry">
+            &bull; <strong>Using Git with Visual Studio Code</strong> <span class="cert-badge">(LinkedIn Learning)</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
