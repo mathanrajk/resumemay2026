@@ -587,6 +587,27 @@
 
         <div class="project-item">
           <div class="project-header">
+            <span class="project-title">The Saree Store &ndash; Full-Stack E-Commerce Platform</span>
+            <div class="project-links">
+              <a href="https://saree-website-ochre.vercel.app" target="_blank">Live &rarr;</a>
+              <a href="https://saree-shop-adminpenal.vercel.app" target="_blank">Admin &rarr;</a>
+              <a href="https://github.com/mathanrajk/saree_shop_server" target="_blank">Code &rarr;</a>
+            </div>
+          </div>
+          <div class="project-tech">React &bull; TypeScript &bull; Node.js &bull; Express &bull; MongoDB &bull; Redux Toolkit &bull; TanStack Query</div>
+          <ul class="bullet-list">
+            <li>Designed and deployed a production e-commerce platform with a customer storefront and a separate admin dashboard, shipping 25+ REST endpoints covering authentication, catalog, cart, orders, and payments.</li>
+            <li>Built dual payment gateway integration (Razorpay + PhonePe) with server-side signature verification and webhook callbacks, ensuring payment status is confirmed on the server rather than trusted from the client.</li>
+            <li>Implemented JWT-based authentication with protected routes and Yup schema validation on every write operation, closing off malformed and unauthorized requests at the API boundary.</li>
+            <li>Built a Cloudinary + Formidable image pipeline so product photos are stored and served as optimized CDN URLs instead of bloating MongoDB documents.</li>
+            <li>Automated transactional email (order confirmations and invoices) via the Brevo API, with the store owner CC&rsquo;d on each order &mdash; removing manual order follow-up.</li>
+            <li>Split client state between Redux Toolkit (auth, cart) and TanStack Query (server cache), eliminating redundant network requests and stale cart data.</li>
+            <li>Deployed the frontend on Vercel and the API on Render against MongoDB Atlas; diagnosed and resolved a production issue where email provider IP allowlisting was silently blocking all transactional mail.</li>
+          </ul>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
             <span class="project-title">Tunexa &ndash; Mobile Audio Streaming &amp; Social Podcast Platform</span>
             <div class="project-links">
               <a href="https://tunexa-mu.vercel.app/" target="_blank">Live Demo &rarr;</a>
@@ -643,6 +664,9 @@
       <section class="section">
         <h2 class="section-title">Certifications</h2>
         <div class="certs-grid">
+          <div class="cert-entry">
+            &bull; <strong>Python Programming Zero to Hero: Complete Python Bootcamp</strong> <span class="cert-badge">(GUVI | HCL)</span>
+          </div>
           <div class="cert-entry">
             &bull; <strong>React Native, Redux &amp; Express &ndash; Full Stack</strong> <span class="cert-badge">(Udemy)</span>
           </div>

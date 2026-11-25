@@ -6,12 +6,16 @@ export const profile = {
   email: 'kmathan301@gmail.com',
   linkedin: 'https://linkedin.com/in/mathanrajkanagaraj-7891011b4',
   github: 'https://github.com/', // placeholder or user can customize
+  resume: {
+    file: 'resume.pdf',
+    filename: 'Mathanraj_Kanagaraj_Resume.pdf',
+  },
   bio: 'Former Software Engineer Level 3 at Syncfusion with 3 years and 11 months of experience building enterprise-grade React UI components, full-stack MERN applications, and cross-platform mobile apps. Passionate about performant UI architecture, clean TypeScript code, and scalable state management.',
   stats: [
     { label: 'Experience', value: '3 Years and 11 Months' },
     { label: 'Former Role', value: 'Level 3 @ Syncfusion' },
     { label: 'Promotions', value: '4 Levels' },
-    { label: 'Certifications', value: '8 Completed' },
+    { label: 'Certifications', value: '9 Completed' },
   ],
 }
 
@@ -82,20 +86,76 @@ export const experience = [
   },
 ]
 
-export const project = {
-  name: 'Tunexa',
-  badge: 'Featured Full Stack Project',
-  sub: 'Mobile audio streaming and social podcast platform',
-  text: 'A high-performance audio streaming platform built with React Native and modern web technologies. Tunexa enables users to discover, stream, and share audio tracks with custom playlist curation, favorites, listening history, dynamic playing queue, and variable playback speed control.',
-  features: [
-    { title: 'Audio Player Engine', desc: 'Seamless streaming playback with dynamic queue, speed controls, and background audio.' },
-    { title: 'Dual-Layer State', desc: 'Redux Toolkit for client UI state synchronized with TanStack Query for server caching.' },
-    { title: 'Scalable REST API', desc: 'Node.js & Express backend with MongoDB database models and secure media delivery via Cloudinary.' },
-    { title: 'Cross-Platform Experience', desc: 'Polished mobile UI with native responsiveness, smooth animations, and touch-first ergonomics.' },
-  ],
-  tags: ['React Native', 'TypeScript', 'Redux Toolkit', 'TanStack Query', 'Node.js', 'Express', 'MongoDB', 'Cloudinary'],
-  url: 'https://tunexa-mu.vercel.app/',
-}
+export const projects = [
+  {
+    name: 'The Saree Store',
+    badge: 'Featured Full Stack Project',
+    sub: 'Full-Stack E-Commerce Platform',
+    text: 'Designed and deployed a production e-commerce platform with a customer storefront and a separate admin dashboard, shipping 25+ REST endpoints covering authentication, catalog, cart, orders, and payments.',
+    features: [
+      {
+        title: 'Dual Payment Gateway',
+        desc: 'Built Razorpay and PhonePe integration with server-side signature verification and webhook callbacks, ensuring payment status is confirmed on the server rather than trusted from the client.',
+      },
+      {
+        title: 'Auth & Boundary Validation',
+        desc: 'Implemented JWT-based authentication with protected routes and Yup schema validation on every write operation, closing off malformed and unauthorized requests at the API boundary.',
+      },
+      {
+        title: 'Cloudinary Media Pipeline',
+        desc: 'Built a Cloudinary + Formidable image pipeline so product photos are stored and served as optimized CDN URLs instead of bloating MongoDB documents.',
+      },
+      {
+        title: 'Automated Order Emails',
+        desc: 'Automated transactional email (order confirmations and invoices) via the Brevo API, with the store owner CC’d on each order — removing manual order follow-up.',
+      },
+      {
+        title: 'Split Client & Server State',
+        desc: 'Split client state between Redux Toolkit (auth, cart) and TanStack Query (server cache), eliminating redundant network requests and stale cart data.',
+      },
+      {
+        title: 'Cloud Deployment & Debugging',
+        desc: 'Deployed the frontend on Vercel and API on Render against MongoDB Atlas; diagnosed and resolved a production issue where email provider IP allowlisting was silently blocking all transactional mail.',
+      },
+    ],
+    tags: [
+      'React',
+      'TypeScript',
+      'Node.js',
+      'Express',
+      'MongoDB',
+      'Redux Toolkit',
+      'TanStack Query',
+      'Razorpay',
+      'PhonePe',
+      'Cloudinary',
+      'JWT',
+      'Yup',
+      'Brevo',
+    ],
+    links: [
+      { label: 'Live Store', url: 'https://saree-website-ochre.vercel.app', primary: true },
+      { label: 'Admin Panel', url: 'https://saree-shop-adminpenal.vercel.app' },
+      { label: 'Source Code', url: 'https://github.com/mathanrajk/saree_shop_server' },
+    ],
+  },
+  {
+    name: 'Tunexa',
+    badge: 'Featured Full Stack Project',
+    sub: 'Mobile audio streaming and social podcast platform',
+    text: 'A high-performance audio streaming platform built with React Native and modern web technologies. Tunexa enables users to discover, stream, and share audio tracks with custom playlist curation, favorites, listening history, dynamic playing queue, and variable playback speed control.',
+    features: [
+      { title: 'Audio Player Engine', desc: 'Seamless streaming playback with dynamic queue, speed controls, and background audio.' },
+      { title: 'Dual-Layer State', desc: 'Redux Toolkit for client UI state synchronized with TanStack Query for server caching.' },
+      { title: 'Scalable REST API', desc: 'Node.js & Express backend with MongoDB database models and secure media delivery via Cloudinary.' },
+      { title: 'Cross-Platform Experience', desc: 'Polished mobile UI with native responsiveness, smooth animations, and touch-first ergonomics.' },
+    ],
+    tags: ['React Native', 'TypeScript', 'Redux Toolkit', 'TanStack Query', 'Node.js', 'Express', 'MongoDB', 'Cloudinary'],
+    links: [
+      { label: 'Launch Live App', url: 'https://tunexa-mu.vercel.app/', primary: true },
+    ],
+  },
+]
 
 export const skills = [
   ['Languages', 'TypeScript, JavaScript, Python'],
@@ -109,6 +169,7 @@ export const skills = [
 
 // Put each image in public/certificates/ using the file name below.
 export const certificates = [
+  { file: 'python-zero-to-hero.jpg', title: 'Python Programming Zero to Hero: Complete Python Bootcamp', by: 'GUVI | HCL', category: 'Language' },
   { file: 'react-native-redux-express.jpg', title: 'React Native, Redux & Express – Full Stack React Native', by: 'Udemy', category: 'Mobile & Backend' },
   { file: 'typescript.jpg', title: 'Understanding TypeScript', by: 'Udemy', category: 'Language' },
   { file: 'jest-rtl.jpg', title: 'Testing React Applications with Jest and React Testing Library', by: 'LinkedIn Learning', category: 'Testing' },

@@ -1,34 +1,18 @@
 import { useState, useEffect } from 'react'
-import { profile, nav, aboutHighlights, experience, project, skills, certificates } from './data.js'
+import { profile, nav, aboutHighlights, experience, projects, skills, certificates } from './data.js'
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path}`
 const techList = skills.flatMap(([, v]) => v.split(', '))
 
+const DARK_THEMES = [
+  { id: 'midnight-violet', label: 'Midnight', metaColor: '#090d16' },
+  { id: 'obsidian-emerald', label: 'Emerald', metaColor: '#06100d' },
+  { id: 'arctic-cyan', label: 'Arctic', metaColor: '#060f1a' },
+  { id: 'crimson-ember', label: 'Crimson', metaColor: '#12090d' },
+  { id: 'cyber-amber', label: 'Amber', metaColor: '#0c0a07' },
+]
+
 // --- Icons ---
-function SunIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="5" />
-      <line x1="12" y1="1" x2="12" y2="3" />
-      <line x1="12" y1="21" x2="12" y2="23" />
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-      <line x1="1" y1="12" x2="3" y2="12" />
-      <line x1="21" y1="12" x2="23" y2="12" />
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-    </svg>
-  )
-}
-
-function MoonIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-    </svg>
-  )
-}
-
 function ArrowUpRightIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -90,6 +74,16 @@ function ArrowUpIcon() {
   )
 }
 
+function DownloadIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  )
+}
+
 function FeatureIcon({ type }) {
   if (type === 'react') {
     return (
@@ -127,14 +121,17 @@ function FeatureIcon({ type }) {
 }
 
 export default function App() {
-  const [theme, setTheme] = useState(() => {
+  const [themeIndex, setThemeIndex] = useState(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('theme')
-      if (saved) return saved
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+      const savedIndex = Number.parseInt(localStorage.getItem('darkThemeIndex') ?? '', 10)
+      if (!Number.isNaN(savedIndex) && savedIndex >= 0 && savedIndex < DARK_THEMES.length) {
+        return (savedIndex + 1) % DARK_THEMES.length
+      }
     }
-    return 'dark'
+    return 0
   })
+
+  const currentTheme = DARK_THEMES[themeIndex]
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('top')
@@ -142,11 +139,15 @@ export default function App() {
   const [copiedEmail, setCopiedEmail] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
 
-  // Apply theme to html root
+  // Apply selected dark theme to html root and persist index for next refresh
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
-  }, [theme])
+    document.documentElement.setAttribute('data-theme', currentTheme.id)
+    localStorage.setItem('darkThemeIndex', String(themeIndex))
+    const metaTheme = document.querySelector('meta[name="theme-color"]')
+    if (metaTheme) {
+      metaTheme.setAttribute('content', currentTheme.metaColor)
+    }
+  }, [themeIndex, currentTheme])
 
   // Scroll spy & back-to-top visibility
   useEffect(() => {
@@ -191,8 +192,8 @@ export default function App() {
     }
   }, [activeCert])
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+  const cycleTheme = () => {
+    setThemeIndex((prev) => (prev + 1) % DARK_THEMES.length)
   }
 
   const handleCopyEmail = async () => {
@@ -241,16 +242,27 @@ export default function App() {
           </nav>
 
           <div className="header-actions">
-            {/* Theme Toggle Button */}
+            {/* Dark Theme Switcher */}
             <button
               type="button"
-              className="icon-btn theme-toggle"
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              className="theme-pill-btn"
+              onClick={cycleTheme}
+              aria-label={`Current theme: ${currentTheme.label}. Click to switch dark theme`}
+              title={`Theme: ${currentTheme.label} (click to switch)`}
             >
-              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+              <span className="theme-swatch" aria-hidden="true" />
+              <span className="theme-pill-label">{currentTheme.label}</span>
             </button>
+
+            {/* Resume Download CTA */}
+            <a
+              className="btn btn-sm btn-outline btn-nav-resume"
+              href={asset(profile.resume.file)}
+              download={profile.resume.filename}
+            >
+              <DownloadIcon />
+              <span>Resume</span>
+            </a>
 
             {/* Quick Contact CTA */}
             <a className="btn btn-sm btn-nav-cta" href={`mailto:${profile.email}`}>
@@ -291,6 +303,14 @@ export default function App() {
                 </a>
               ))}
               <div className="mobile-drawer-footer">
+                <a
+                  className="btn btn-outline btn-block"
+                  href={asset(profile.resume.file)}
+                  download={profile.resume.filename}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <DownloadIcon /> Download Resume
+                </a>
                 <a
                   className="btn btn-primary btn-block"
                   href={`mailto:${profile.email}`}
@@ -338,8 +358,16 @@ export default function App() {
 
           <div className="hero-actions">
             <a className="btn btn-primary" href="#projects">
-              <span>View Featured Project</span>
+              <span>View Featured Projects</span>
               <ArrowUpRightIcon />
+            </a>
+            <a
+              className="btn btn-outline"
+              href={asset(profile.resume.file)}
+              download={profile.resume.filename}
+            >
+              <DownloadIcon />
+              <span>Download Resume</span>
             </a>
             <a className="btn btn-outline" href="#experience">
               <span>View Career Path</span>
@@ -495,57 +523,66 @@ export default function App() {
           </div>
         </section>
 
-        {/* Featured Project Section */}
+        {/* Featured Projects Section */}
         <section id="projects" className="content-section">
           <div className="section-header">
-            <span className="section-kicker">PORTFOLIO HIGHLIGHT</span>
-            <h2>Featured Project</h2>
+            <span className="section-kicker">PORTFOLIO HIGHLIGHTS</span>
+            <h2>Featured Projects</h2>
             <p className="section-sub">
-              Production-ready mobile audio and social podcast streaming platform.
+              Production-ready full-stack web and mobile platforms engineered with React, TypeScript, and Node.js.
             </p>
           </div>
 
-          <article className="featured-project-card">
-            <div className="project-header-bar">
-              <div className="project-title-area">
-                <span className="project-badge">{project.badge}</span>
-                <h3>{project.name}</h3>
-                <p className="project-subtitle">{project.sub}</p>
-              </div>
+          <div className="projects-list">
+            {projects.map((p) => (
+              <article key={p.name} className="featured-project-card">
+                <div className="project-header-bar">
+                  <div className="project-title-area">
+                    <span className="project-badge">{p.badge}</span>
+                    <h3>{p.name}</h3>
+                    <p className="project-subtitle">{p.sub}</p>
+                  </div>
 
-              <a
-                className="btn btn-primary btn-project-cta"
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>Launch Live App</span>
-                <ArrowUpRightIcon />
-              </a>
-            </div>
-
-            <p className="project-description">{project.text}</p>
-
-            {/* Feature Highlights Grid */}
-            <div className="project-features-grid">
-              {project.features.map((f) => (
-                <div key={f.title} className="project-feature-card">
-                  <h4>{f.title}</h4>
-                  <p>{f.desc}</p>
+                  <div className="project-actions">
+                    {p.links.map((link) => (
+                      <a
+                        key={link.label}
+                        className={`btn ${link.primary ? 'btn-primary' : 'btn-outline'} btn-project-cta`}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>{link.label}</span>
+                        <ArrowUpRightIcon />
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
 
-            {/* Project Tags */}
-            <div className="project-tags-area">
-              <span className="tags-label">Technologies:</span>
-              <ul className="project-chips">
-                {project.tags.map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
-            </div>
-          </article>
+                <p className="project-description">{p.text}</p>
+
+                {/* Feature Highlights Grid */}
+                <div className={`project-features-grid ${p.features.length > 4 ? 'project-features-grid-3' : ''}`}>
+                  {p.features.map((f) => (
+                    <div key={f.title} className="project-feature-card">
+                      <h4>{f.title}</h4>
+                      <p>{f.desc}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Project Tags */}
+                <div className="project-tags-area">
+                  <span className="tags-label">Technologies:</span>
+                  <ul className="project-chips">
+                    {p.tags.map((t) => (
+                      <li key={t}>{t}</li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         {/* Skills Section */}
@@ -583,7 +620,7 @@ export default function App() {
             <span className="section-kicker">CREDENTIALS</span>
             <h2>Certifications & Courses</h2>
             <p className="section-sub">
-              Verified certifications in React, TypeScript, React Native, Testing, and modern Web Standards.
+              Verified certifications in React, TypeScript, Python, React Native, Testing, and modern Web Standards.
             </p>
           </div>
 
@@ -685,6 +722,30 @@ export default function App() {
                   >
                     <span>Connect</span>
                     <ArrowUpRightIcon />
+                  </a>
+                </div>
+
+                <div className="contact-card">
+                  <div className="contact-card-icon">
+                    <DownloadIcon />
+                  </div>
+                  <div className="contact-card-info">
+                    <span className="contact-card-lbl">Resume (PDF)</span>
+                    <a
+                      href={asset(profile.resume.file)}
+                      download={profile.resume.filename}
+                      className="contact-card-val"
+                    >
+                      {profile.resume.filename}
+                    </a>
+                  </div>
+                  <a
+                    href={asset(profile.resume.file)}
+                    download={profile.resume.filename}
+                    className="btn btn-sm btn-primary"
+                  >
+                    <DownloadIcon />
+                    <span>Download</span>
                   </a>
                 </div>
               </div>
